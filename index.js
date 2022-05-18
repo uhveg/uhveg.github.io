@@ -49,16 +49,18 @@ item.addEventListener('scroll', function (event) {
     document.getElementById("r_arrow").style.opacity = "0%";
 });
 
-
-
 function openWA() {
-    link = "https://web.whatsapp.com/send?phone=+523782037823&text=Hola! Me interesa conseguir un trabajo!" // Web
-    link = "whatsapp://send?phone=+523782037823&text=Hola! Me interesa conseguir un trabajo!" // Mobile
+    var link = ""
+    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+        link = "whatsapp://send?phone=+523782037823&text=Hola! Me interesa conseguir un trabajo!" // Mobile
+    }
+    else{
+        link = "https://web.whatsapp.com/send?phone=+523782037823&text=Hola! Me interesa conseguir un trabajo!" // Web
+    }
     window.open(link, "_blank")
 }
 
 function openFB() {
-    link = "https://web.whatsapp.com/send?phone=+523782037823&text=Hola! Me interesa conseguir un trabajo!" // Web
-    link = "whatsapp://send?phone=+523782037823&text=Hola! Me interesa conseguir un trabajo!" // Mobile
+    var link = "facebook.com"
     window.open(link, "_blank")
 }
