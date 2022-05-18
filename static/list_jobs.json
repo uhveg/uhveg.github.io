@@ -1,0 +1,35 @@
+[
+    {
+        "img_url": "https://www.svgrepo.com/show/274911/carpenter.svg",
+        "Title": "Carpintero",
+        "Description": "Trabajo carpintero ...... ...... ....... ...... ....... ....... ....... ........ ......... ........",
+        "Indispensable": "No requerido",
+        "Opcional": "+3 años de experiencia en carpinteria",
+        "Ubicacion": "Canada Montreal"
+    },
+    {
+        "img_url": "https://www.svgrepo.com/show/274895/mechanic.svg",
+        "Title": "Mecanico",
+        "Description": "Trabajo mecanico ...... ...... ....... ...... ....... ....... ....... ........ ......... ........",
+        "Indispensable": "No requerido",
+        "Opcional": "+3 años de experiencia en mecanica",
+        "Ubicacion": "Canada Toronto"
+    },
+    {
+        "img_url": "https://www.svgrepo.com/show/274895/mechanic.svg",
+        "Title": "Mecanico",
+        "Description": "Trabajo mecanico ...... ...... ....... ...... ....... ....... ....... ........ ......... ........",
+        "Indispensable": "No requerido",
+        "Opcional": "+3 años de experiencia en mecanica",
+        "Ubicacion": "Canada Toronto"
+    },
+    {
+        "img_url": "https://www.svgrepo.com/show/274895/mechanic.svg",
+        "Title": "Mecanico",
+        "Description": "Trabajo mecanico ...... ...... ....... ...... ....... ....... ....... ........ ......... ........",
+        "Indispensable": "No requerido",
+        "Opcional": "+3 años de experiencia en mecanica",
+        "Ubicacion": "Canada Toronto"
+    }
+    
+]
