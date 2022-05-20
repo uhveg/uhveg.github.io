@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Titan One', cursive;
+    color: aliceblue;
+}
+
+canvas {
+    position: fixed;
+    margin: 0;
+    padding: 0;
+}
+
+.letrero {
+    position: fixed;
+    background: none;
+    width: 100%;
+    top: 40%;
+    z-index: 999;
+    text-align: center;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1s;
+    animation-direction: alternate;
+    animation-name: myanim;
+    animation-iteration-count: infinite;
+    color: rgb(255, 255, 212);
+}
+
+.image {
+    visibility: hidden;
+}
+
+@keyframes myanim {
+    0% {
+        transform: scale(0.7);
+        color: rgb(236, 236, 116);
+    }
+    100% {
+        transform: scale(1.5);
+        /* color: rgb(238, 57, 57); */
+        color: rgb(255, 255, 155);
+        /* color: rgb(255, 255, 212); */
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .image {
+        position: fixed;
+        width: 100%;
+        min-height: 40vh;
+        margin: 0;
+        padding: 0;
+        bottom: 0;
+        z-index: 99;
+        background-position: center;
+        background-repeat: no-repeat;
+        /* background-size: contain; */
+        background-size: cover;
+        opacity: 0.4;
+        background-image: url("out_gray.jpg");
+        visibility: visible;
+    }
+}
