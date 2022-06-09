@@ -1,35 +1,10 @@
 [
     {
-        "img_url": "https://www.svgrepo.com/show/274911/carpenter.svg",
-        "Title": "Carpintero",
+        "img_url": "https://www.svgrepo.com/show/30066/heart.svg",
+        "Title": "Holaaaaa bb",
         "Description": "Trabajo carpintero ...... ...... ....... ...... ....... ....... ....... ........ ......... ........",
-        "Indispensable": "No requerido",
-        "Opcional": "+3 años de experiencia en carpinteria",
+        "Indispensable": "Te amo",
+        "Opcional": "+3 meses juntos",
         "Ubicacion": "Canada Montreal"
-    },
-    {
-        "img_url": "https://www.svgrepo.com/show/274895/mechanic.svg",
-        "Title": "Mecanico",
-        "Description": "Trabajo mecanico ...... ...... ....... ...... ....... ....... ....... ........ ......... ........",
-        "Indispensable": "No requerido",
-        "Opcional": "+3 años de experiencia en mecanica",
-        "Ubicacion": "Canada Toronto"
-    },
-    {
-        "img_url": "https://www.svgrepo.com/show/274895/mechanic.svg",
-        "Title": "Mecanico",
-        "Description": "Trabajo mecanico ...... ...... ....... ...... ....... ....... ....... ........ ......... ........",
-        "Indispensable": "No requerido",
-        "Opcional": "+3 años de experiencia en mecanica",
-        "Ubicacion": "Canada Toronto"
-    },
-    {
-        "img_url": "https://www.svgrepo.com/show/274895/mechanic.svg",
-        "Title": "Mecanico",
-        "Description": "Trabajo mecanico ...... ...... ....... ...... ....... ....... ....... ........ ......... ........",
-        "Indispensable": "No requerido",
-        "Opcional": "+3 años de experiencia en mecanica",
-        "Ubicacion": "Canada Toronto"
     }
-    
 ]
