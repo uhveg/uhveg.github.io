@@ -6,7 +6,6 @@ fetch("https://raw.githubusercontent.com/uhveg/uhveg.github.io/main/static/list_
 })
 .then(jsondata => {
     var id = 0;
-    console.log(jsondata);
     jsondata.forEach(element => {
         item.innerHTML += 
         "<div class=\"card\"> \
