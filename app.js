@@ -174,42 +174,6 @@ function pass_prize() {
   document.getElementById("credito_val").innerHTML = CREDITOS;
 }
 
-const cargarDatos = async (myid) => {
-  try {
-    const respuesta = await fetch("data_user.json");
-    if (respuesta.status === 200) {
-      data = await respuesta.json();
-      for (let element of data) {
-        if (element.id == myid) {
-          CREDITOS = element.creditos;
-          PREMIO = element.premio;
-          document.getElementById("premio_val").innerHTML = PREMIO;
-          document.getElementById("credito_val").innerHTML = CREDITOS;
-          break;
-        }
-      }
-    } else {
-      console.log("Hubo un error con el usuario");
-      return;
-    }
-    const resp = await fetch("data.json");
-    if (resp.status === 200) {
-      data = await resp.json();
-      BONUS = data.BONUS;
-      HEART_BONUS = data.H_BONUS;
-      document.getElementById("full_bonus_id").innerHTML = BONUS;
-      document.getElementById("heart_bonus_id").innerHTML = HEART_BONUS;
-      // console.log(data);
-    } else {
-      console.log("Hubo un error con los datos");
-      return;
-    }
-  } catch (error) {
-    console.log(error);
-    return;
-  }
-};
-
 function getParams(url) {
   var idx = url.indexOf("?");
   var params = new Array();
@@ -225,7 +189,14 @@ function getParams(url) {
 
 params = getParams(document.URL);
 USER = params["user"];
-// console.log(USER);
-cargarDatos(USER);
+CREDITOS = parseInt(params["credito"]);
+PREMIO = parseInt(params["premio"]);
+BONUS = parseInt(params["bonus"]);
+HEART_BONUS = parseInt(params["hbonus"]);
+HEART_DONE = JSON.parse(params["hdone"]);
 
-// run();
+document.getElementById("premio_val").innerHTML = PREMIO;
+document.getElementById("credito_val").innerHTML = CREDITOS;
+document.getElementById("full_bonus_id").innerHTML = BONUS;
+document.getElementById("heart_bonus_id").innerHTML = HEART_BONUS;
+
