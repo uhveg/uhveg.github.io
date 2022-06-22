@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style_L.css">
+    <title>Login</title>
+</head>
+
+<body>
+    <!-- <div> -->
+    <p id="alert">Usuario no registrado.</p>
+    <input id="code" type="text" oninput="rdy_btn()" placeholder="CLAVE_ID">
+    <button id="btn_acces" onclick="access()" type="button" disabled>ACCESS</button>
+    <!-- </div> -->
+</body>
+<script>
+    function rdy_btn() {
+        let mycode = document.getElementById("code").value;
+        if (mycode.length == 16) {
+            var btn = document.getElementById("btn_acces");
+            btn.removeAttribute('disabled');
+            btn.style.backgroundColor = "#00a7e1";
+        } else {
+            var btn = document.getElementById("btn_acces");
+            btn.disabled = true;
+            btn.style.backgroundColor = "rgba(0,0,0,0.5)";
+        }
+    }
+
+    async function access() {
+        let id = document.getElementById("code").value;
+        let resp = await check(id);
+        if (resp == -1) {
+            document.getElementById("alert").style.opacity = "1";
+            setTimeout(() => {
+                document.getElementById("alert").style.opacity = "0";
+            }, 1000);
+        }
+    }
+
+    async function check(myid) {
+        try {
+            const respuesta = await fetch("https://databasejson-1.herokuapp.com/?user="+myid, {mode: "no-cors"});
+            console.log(respuesta);
+            if (respuesta.status === 200) {
+                let datos = await respuesta.json();
+                console.log(datos);
+                window.location.href = "/game.html?user=" + myid
+                                        +"&credito=" + datos.credito
+                                        +"&premio=" + datos.premio
+                                        +"&bonus=" + datos.bonus
+                                        +"&hbonus=" + datos.h_bonus
+                                        +"&hdone=" + JSON.stringify(datos.h_done);
+            } else {
+                console.log("Hubo un error con el usuario");
+                return -1;
+            }
+        } catch (error) {
+            console.log(error);
+            return -1;
+        }
+        return -1;
+    };
+    // document.getElementById("alert").style.opacity = "0";
+    // document.getElementById("body").classList.remove("preload");
+</script>
+
+</html>
