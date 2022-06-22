@@ -201,8 +201,8 @@ document.getElementById("full_bonus_id").innerHTML = BONUS;
 document.getElementById("heart_bonus_id").innerHTML = HEART_BONUS;
 
 for(let idx of HEART_DONE) {
-  var myel = document.getElementByID("_"+idx);
-  var hel = document.getElementByID("h_"+idx);
+  var myel = document.getElementById("_"+idx);
+  var hel = document.getElementById("h_"+idx);
   myel.classList.add("bonus_h");
   hel.style.filter = "";
 }
