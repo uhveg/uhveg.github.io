@@ -179,9 +179,7 @@ h2 {
     /* height: 100px; */
     background-repeat: no-repeat;
     padding-top: 30%;
-    filter:
-        grayscale();
-
+    filter: saturate(0);
 }
 
 .buttons {

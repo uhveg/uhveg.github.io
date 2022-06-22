@@ -203,6 +203,7 @@ document.getElementById("heart_bonus_id").innerHTML = HEART_BONUS;
 for(let idx of HEART_DONE) {
   var myel = document.getElementById("_"+idx);
   var hel = document.getElementById("h_"+idx);
+  console.log(hel.style);
   myel.classList.add("bonus_h");
-  hel.style.filter = "";
+  hel.style.filter = "saturate(100%)";
 }
