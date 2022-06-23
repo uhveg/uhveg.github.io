@@ -268,7 +268,7 @@ async function play(btn) {
     }
   }
   // UPDATE VALUES
-  const respuesta = fetch("https://databasejson-1.herokuapp.com/?user="+myid
+  const respuesta = fetch("https://databasejson-1.herokuapp.com/?user="+USER
                             +"&credito=" + CREDITOS
                             +"&premio=" + PREMIO
                             +"&bonus=" + BONUS
