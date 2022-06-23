@@ -268,6 +268,15 @@ async function play(btn) {
     }
   }
   // UPDATE VALUES
+  const respuesta = fetch("https://databasejson-1.herokuapp.com/?user="+myid
+                            +"&credito=" + CREDITOS
+                            +"&premio=" + PREMIO
+                            +"&bonus=" + BONUS
+                            +"&hbonus=" + HEART_BONUS
+                            +"&hdone=" + JSON.stringify(HEART_DONE)
+                            +"&update=true");
+
+  // Update screen
   console.log("PREMIO:: " + PREMIO);
   document.getElementById("premio_val").innerHTML = PREMIO;
   document.getElementById("full_bonus_id").innerHTML = BONUS;
