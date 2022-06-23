@@ -49,14 +49,85 @@ let bet_array = [
   },
 ];
 
+let probabilities = new Array(25).fill(0);
+
 let CREDITOS = 0;
 let PREMIO = 0;
 let BONUS = 0;
 let HEART_BONUS = 0;
 let USER = "";
+let HEART_DONE = [];
 
-speed = function (rnd, it, time) {
-  var sinu = 1500 * Math.sin(((time * 25 + it) * Math.PI) / rnd);
+function init_probabilities(array_prob) {
+  // win < 5 -> 65%
+  // win == 10 -> 15%
+  // win == 20 -> 10%
+  // win == 30 -> 5%
+  // win_train_m == 3%
+  // win_train_M == 1.5%
+  // win_bonus == 0.5%
+  var sum = array_prob.reduce((a, b) => a + b, 0);
+  if (sum != 1) {
+    console.log("ERROR init probabilities::: must sum 1");
+    return;
+  }
+  min5 = [];
+  eq10 = [];
+  eq20 = [];
+  eq30 = [];
+  wtrain_m = 3;
+  wtrain_M = 5;
+  wbonus = 4;
+  for (let fig of bet_array) {
+    if (fig.win_m && fig.win_m < 5) {
+      for (let minfig of fig.index_m) {
+        min5.push(minfig);
+      }
+    }
+    if (fig.win == 10) {
+      for (let Mfig of fig.index) {
+        if (!fig.index_m.includes(Mfig)) {
+          eq10.push(Mfig);
+        }
+      }
+    }
+    if (fig.win == 20) {
+      for (let Mfig of fig.index) {
+        if (!fig.index_m.includes(Mfig)) {
+          eq20.push(Mfig);
+        }
+      }
+    }
+    if (fig.win == 30) {
+      for (let Mfig of fig.index) {
+        if (!fig.index_m.includes(Mfig)) {
+          eq30.push(Mfig);
+        }
+      }
+    }
+  }
+  for (let idx_b = 1; idx_b < 25; idx_b++) {
+    probabilities[idx_b] = probabilities[idx_b - 1];
+    if (min5.includes(idx_b)) {
+      probabilities[idx_b] += array_prob[0] / min5.length;
+    } else if (eq10.includes(idx_b)) {
+      probabilities[idx_b] += array_prob[1] / eq10.length;
+    } else if (eq20.includes(idx_b)) {
+      probabilities[idx_b] += array_prob[2] / eq20.length;
+    } else if (eq30.includes(idx_b)) {
+      probabilities[idx_b] += array_prob[3] / eq30.length;
+    } else if (idx_b == wtrain_m) {
+      probabilities[idx_b] += array_prob[4];
+    } else if (idx_b == wtrain_M) {
+      probabilities[idx_b] += array_prob[5];
+    } else if (idx_b == wbonus) {
+      probabilities[idx_b] += array_prob[6];
+    }
+  }
+}
+
+speed = function (rnd, iters) {
+  var sinu = 1500 * Math.sin((iters * Math.PI) / rnd);
   if (sinu > 370) {
     sinu = 370;
   }
@@ -71,39 +142,62 @@ async function delay(delayInms) {
   });
 }
 
-async function run() {
-  let myrand = Math.random() * 200 + 100;
+async function run(classname, dir, llim, rlim) {
+  // let myrand = Math.random() * (rlim - llim) + llim;
+  let ran_cell = Math.random();
+  // console.log(ran_cell);
+  // console.log(i);
+  // console.log(probabilities);
+  let prob_idx;
+  for (prob_idx = 1; prob_idx < 25; prob_idx++) {
+    if (ran_cell < probabilities[prob_idx]) {
+      break;
+    }
+  }
+  // console.log(prob_idx);
+  let myrand = prob_idx - i - 1 + 24 * Math.floor(Math.random() * 5 + 2);
+  var iters = 0;
   while (true) {
-    var aux_index = i - 1;
+    var aux_index = i - dir;
     if (aux_index <= 0) {
       aux_index = 24 + aux_index;
     }
+    if (aux_index == 25) {
+      aux_index = 1;
+    }
     elem = document.getElementById("_" + aux_index);
     for (let child of elem.children) {
-      if (child.classList.contains("bl_sq")) {
+      if (child.classList.contains(classname)) {
         elem.removeChild(child);
       }
     }
     elem = document.getElementById("_" + i);
     var a = document.createElement("div");
-    a.classList.add("bl_sq");
+    a.classList.add(classname);
     elem.appendChild(a);
-    i++;
+    i += dir;
     if (i == 25) {
-      i = (i % 25) + 1;
+      i = 1;
       time++;
     }
-    let spd = speed(myrand, i, time);
-    if (time * 25 + i > myrand) {
+    if (i == 0) {
+      i = 24;
+      time++;
+    }
+    let spd = speed(myrand, iters);
+    if (iters > myrand) {
       time = 0;
-      i--;
+      i -= dir;
       if (i == 0) {
         i = 24;
       }
+      if (i == 25) {
+        i = 1;
+      }
       return;
     }
+    iters++;
     let delayres = await delay(spd);
-    // console.log(delayres);
   }
 }
 
@@ -125,26 +219,59 @@ async function play(btn) {
 
   // RANDOM CHOOSE AND ANIMATION
   btn.style.transform = "translateY(100%)";
-  await run();
-  btn.style.transform = "translateY(0%)";
+  await run("bl_sq", 1, 100, 300);
   child = elem.lastElementChild;
   //   child.style.animationPlayState = "paused";
   child.style.animationName = "blink_low";
 
   // CHECK IF WIN
   console.log("CASILLA GANADORA:: " + i);
-  bet_array.forEach((element) => {
+  for (let element of bet_array) {
     if (element.index.includes(i) && element.bet > 0) {
       console.log("FRUTA GANADORA:: " + element.name);
+      // heart special
+      if (element.name == "heart") {
+        if (!HEART_DONE.includes(i)) {
+          document.getElementById("_" + i).classList.add("bonus_h");
+          document.getElementById("h_" + i).style.filter = "saturate(100%)";
+          HEART_DONE.push(i);
+          if (HEART_DONE.length == 5) {
+            for (let idx_h of element.index) {
+              document.getElementById("h_" + idx_h).style.animationName =
+                "win_heart";
+              document.getElementById("_" + idx_h).style.animationName =
+                "win_heart";
+            }
+            let delayres = await delay(4000);
+            for (let idx_h of element.index) {
+              document.getElementById("h_" + idx_h).style.animationName = "";
+              document.getElementById("_" + idx_h).classList.remove("bonus_h");
+              document.getElementById("h_" + idx_h).style.filter =
+                "saturate(0)";
+            }
+            PREMIO += HEART_BONUS;
+            HEART_BONUS = 0;
+            HEART_DONE = [];
+          }
+        }
+      }
+
       if (element.index_m.includes(i)) {
         PREMIO += element.win_m * element.bet;
       } else {
         PREMIO += element.win * element.bet;
       }
-      console.log("PREMIO:: " + PREMIO);
-      document.getElementById("premio_val").innerHTML = PREMIO;
+      break;
     }
-  });
+    if (element.index.includes(i) && element.name == "heart") {
+      HEART_BONUS += 5;
+    }
+  }
+  // UPDATE VALUES
+  console.log("PREMIO:: " + PREMIO);
+  document.getElementById("premio_val").innerHTML = PREMIO;
+  document.getElementById("full_bonus_id").innerHTML = BONUS;
+  document.getElementById("heart_bonus_id").innerHTML = HEART_BONUS;
 
   // EMPTY BETS
   bet_array.forEach((element) => {
@@ -153,6 +280,8 @@ async function play(btn) {
     mybtn.innerHTML = "";
     mybtn.style.backgroundPositionY = "50%";
   });
+
+  btn.style.transform = "translateY(0%)";
 }
 
 function choose(btn, name) {
@@ -200,10 +329,13 @@ document.getElementById("credito_val").innerHTML = CREDITOS;
 document.getElementById("full_bonus_id").innerHTML = BONUS;
 document.getElementById("heart_bonus_id").innerHTML = HEART_BONUS;
 
-for(let idx of HEART_DONE) {
-  var myel = document.getElementById("_"+idx);
-  var hel = document.getElementById("h_"+idx);
-  console.log(hel.style);
+for (let idx of HEART_DONE) {
+  var myel = document.getElementById("_" + idx);
+  var hel = document.getElementById("h_" + idx);
   myel.classList.add("bonus_h");
   hel.style.filter = "saturate(100%)";
 }
+
+bet_array[0].win = BONUS;
+// init_probabilities([0.65, 0.15, 0.1, 0.05, 0.03, 0.015, 0.005]); // GOOD
+init_probabilities([0.01, 0.01, 0.01, 0.9, 0.01, 0.01, 0.05]); // GOOD

@@ -103,7 +103,6 @@ h2 {
     top: 0%;
     width: 100%;
     padding-top: 100%;
-    /* background-color: rgba(0,0,255,50); */
     background-color: #00a7e1;
     opacity: 0.4;
     box-shadow: 0px 0px 15px 1px #00a7e1;
@@ -111,7 +110,54 @@ h2 {
     content: '';
     overflow: visible;
     border-radius: 0.5vh;
-    /* visibility: hidden; */
+    animation: blink 0.2s ease-in-out infinite alternate-reverse;
+}
+
+.r_sq {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    padding-top: 100%;
+    background-color: #FF6B6C;
+    opacity: 0.4;
+    box-shadow: 0px 0px 15px 1px #FF6B6C;
+    z-index: 99;
+    content: '';
+    overflow: visible;
+    border-radius: 0.5vh;
+    animation: blink 0.2s ease-in-out infinite alternate-reverse;
+}
+
+.g_sq {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    padding-top: 100%;
+    background-color: #31ee96;
+    opacity: 0.4;
+    box-shadow: 0px 0px 15px 1px #31ee96;
+    z-index: 99;
+    content: '';
+    overflow: visible;
+    border-radius: 0.5vh;
+    animation: blink 0.2s ease-in-out infinite alternate-reverse;
+}
+
+.y_sq {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    padding-top: 100%;
+    background-color: #ebee31;
+    opacity: 0.4;
+    box-shadow: 0px 0px 15px 1px #ebee31;
+    z-index: 99;
+    content: '';
+    overflow: visible;
+    border-radius: 0.5vh;
     animation: blink 0.2s ease-in-out infinite alternate-reverse;
 }
 
@@ -130,6 +176,11 @@ h2 {
 .bonus_h {
     /* border: 0.2vh solid blue; d0f3ff*/
     background-color: #ffd0d0;
+    /* animation-name: win_heart; */
+    animation-timing-function: linear;
+    animation-direction: alternate;
+    animation-duration: 200ms;
+    animation-iteration-count: 20;
 }
 
 .full_bonus {
@@ -180,6 +231,11 @@ h2 {
     background-repeat: no-repeat;
     padding-top: 30%;
     filter: saturate(0);
+    /* animation-name: win_heart; */
+    animation-timing-function: linear;
+    animation-direction: alternate;
+    animation-duration: 200ms;
+    animation-iteration-count: 20;
 }
 
 .buttons {
@@ -294,5 +350,41 @@ h2 {
 
     to {
         opacity: 0.1;
+    }
+}
+
+@keyframes win_heart {
+    0% {
+        filter: saturate(0);
+    }
+    10% {
+        filter: saturate(10%);
+    }
+    20% {
+        filter: saturate(20%);
+    }
+    30% {
+        filter: saturate(30%);
+    }
+    40% {
+        filter: saturate(40%);
+    }
+    50% {
+        filter: saturate(50%);
+    }
+    60% {
+        filter: saturate(60%);
+    }
+    70% {
+        filter: saturate(70%);
+    }
+    80% {
+        filter: saturate(80%);
+    }
+    90% {
+        filter: saturate(90%);
+    }
+    100% {
+        filter: saturate(100);
     }
 }

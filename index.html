@@ -43,7 +43,7 @@
 
     async function check(myid) {
         try {
-            const respuesta = await fetch("https://databasejson-1.herokuapp.com/?user="+myid, {mode: "no-cors"});
+            const respuesta = await fetch("https://databasejson-1.herokuapp.com/?user="+myid);
             console.log(respuesta);
             if (respuesta.status === 200) {
                 let datos = await respuesta.json();

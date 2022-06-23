@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>TM</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="screen">
+            <div class="scoreboard">
+                <h2 id="premio">Premios</h2>
+                <h2 id="credito">Creditos</h2>
+                <div id="premio_val" class="contador">000</div>
+                <div id="credito_val" class="contador">000</div>
+            </div>
+            <div class="game_scr">
+                <div id="_1" class="square"
+                    style="grid-column: 1 / 1;background-image: url('images/image\ \(1\).jpg');">
+                </div>
+                <div id="_2" class="square"
+                    style="grid-column: 2 / 2;background-image: url('https://www.svgrepo.com/show/128595/heart.svg');">
+                </div>
+                <div id="_3" class="square bns_txt"
+                    style="grid-column: 3 / 3;background-image: url('https://www.svgrepo.com/show/42618/train.svg');">
+                    <p>50</p>
+                </div>
+                <div id="_4" class="square bns_txt"
+                    style="grid-column: 4 / 4;background-image: url('https://www.svgrepo.com/show/13832/heart.svg');">
+                    <p>BONUS</p>
+                </div>
+                <div id="_5" class="square bns_txt"
+                    style="grid-column: 5 / 5;background-image: url('https://www.svgrepo.com/show/42618/train.svg');">
+                    <p>100</p>
+                </div>
+                <div id="_6" class="square"
+                    style="grid-column: 6 / 6;background-image: url('https://www.svgrepo.com/show/128595/heart.svg');">
+                </div>
+                <div id="_7" class="square"
+                    style="grid-column: 7 / 7;background-image: url('images/image\ \(2\).jpg');">
+                </div>
+                <div id="_24" class="square"
+                    style="grid-column: 1 / 1;background-image: url('images/image\ \(3\).jpg');background-size: 50%;">
+                </div>
+                <div id="_8" class="square"
+                    style="grid-column: 7 / 7;background-image: url('images/image\ \(4\).jpg');">
+                </div>
+                <div id="_23" class="square"
+                    style="grid-column: 1 / 1;background-image: url('images/image\ \(3\).jpg');">
+                </div>
+                <div id="_9" class="square"
+                    style="grid-column: 7 / 7;background-image: url('images/image\ \(4\).jpg');background-size: 50%;">
+                </div>
+                <div id="_22" class="square"
+                    style="grid-column: 1 / 1;background-image: url('https://www.svgrepo.com/show/128595/heart.svg');">
+                </div>
+                <div id="_10" class="square"
+                    style="grid-column: 7 / 7;background-image: url('https://www.svgrepo.com/show/128595/heart.svg');">
+                </div>
+                <div id="_21" class="square"
+                    style="grid-column: 1 / 1;background-image: url('images/image\ \(5\).jpg');background-size: 50%;">
+                </div>
+                <div id="_11" class="square"
+                    style="grid-column: 7 / 7;background-image: url('images/image\ \(6\).jpg');">
+                </div>
+                <div id="_20" class="square"
+                    style="grid-column: 1 / 1;background-image: url('images/image\ \(5\).jpg');">
+                </div>
+                <div id="_12" class="square"
+                    style="grid-column: 7 / 7;background-image: url('images/image\ \(1\).jpg');background-size: 50%;">
+                </div>
+                <div id="_19" class="square"
+                    style="grid-column: 1 / 1;background-image: url('images/image\ \(2\).jpg');">
+                </div>
+                <div id="_18" class="square"
+                    style="grid-column: 2 / 2;background-image: url('images/image\ \(2\).jpg');background-size: 50%;">
+                </div>
+                <div id="_17" class="square"
+                    style="grid-column: 3 / 3;background-image: url('images/image\ \(7\).jpg');">
+                </div>
+                <div id="_16" class="square"
+                    style="grid-column: 4 / 4;background-image: url('https://www.svgrepo.com/show/128595/heart.svg');">
+                </div>
+                <div id="_15" class="square"
+                    style="grid-column: 5 / 5;background-image: url('images/image\ \(7\).jpg');background-size: 50%;">
+                </div>
+                <div id="_14" class="square"
+                    style="grid-column: 6 / 6;background-image: url('images/image\ \(3\).jpg');">
+                </div>
+                <div id="_13" class="square"
+                    style="grid-column: 7 / 7;background-image: url('images/image\ \(1\).jpg');">
+                </div>
+                <div class="bonus_container">
+                    <div id="full_bonus_id" class="full_bonus">100</div>
+                    <div class="hearts_bn">
+                        <div id="h_2" class="heart_in"
+                            style="background-image: url('https://www.svgrepo.com/show/128595/heart.svg');transform: translateY(2vh);">
+                        </div>
+                        <div id="h_6" class="heart_in"
+                            style="background-image: url('https://www.svgrepo.com/show/128595/heart.svg');"></div>
+                        <div id="h_10" class="heart_in"
+                            style="background-image: url('https://www.svgrepo.com/show/128595/heart.svg');transform: translateY(-2vh);">
+                        </div>
+                        <div id="h_16" class="heart_in"
+                            style="background-image: url('https://www.svgrepo.com/show/128595/heart.svg');"></div>
+                        <div id="h_22" class="heart_in"
+                            style="background-image: url('https://www.svgrepo.com/show/128595/heart.svg');transform: translateY(2vh);">
+                        </div>
+                    </div>
+                    <div id="heart_bonus_id" class="heart_bonus">54</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="buttons">
+        <button onclick="" class="prize_btn"
+            style="grid-column: 1 / 4;background-image: url('https://www.svgrepo.com/show/304720/star-prize-award.svg');">
+        </button>
+        <button onclick="pass_prize()" class="arrow_btn"
+            style="grid-column: 4 / 6;background-image: url('https://www.svgrepo.com/show/215724/right-arrow-next.svg');">
+        </button>
+        <button id="fheart_sel" onclick="choose(this, 'fheart')" class="square btn_chose"
+            style="grid-column: 1 / 1;background-image: url('https://www.svgrepo.com/show/13832/heart.svg');">
+        </button>
+        <button id="train_sel" onclick="choose(this, 'train')" class="square btn_chose"
+            style="grid-column: 2 / 2;background-image: url('https://www.svgrepo.com/show/42618/train.svg');">
+        </button>
+        <button id="heart_sel" onclick="choose(this, 'heart')" class="square btn_chose"
+            style="grid-column: 3 / 3;background-image: url('https://www.svgrepo.com/show/128595/heart.svg');">
+        </button>
+        <button id="cherry_sel" onclick="choose(this, 'cherry')" class="square btn_chose"
+            style="grid-column: 4 / 4;background-image: url('images/image\ \(6\).jpg');">
+        </button>
+        <button id="strawberry_sel" onclick="choose(this, 'strawberry')" class="square btn_chose"
+            style="grid-column: 5 / 5;background-image: url('images/image\ \(5\).jpg');">
+        </button>
+        <button id="watermelon_sel" onclick="choose(this, 'watermelon')" class="square btn_chose"
+            style="grid-column: 1 / 1;background-image: url('images/image\ \(7\).jpg');">
+        </button>
+        <button id="pear_sel" onclick="choose(this, 'pear')" class="square btn_chose"
+            style="grid-column: 2 / 2;background-image: url('images/image\ \(4\).jpg');">
+        </button>
+        <button id="pineapple_sel" onclick="choose(this, 'pineapple')" class="square btn_chose"
+            style="grid-column: 3 / 3;background-image: url('images/image\ \(1\).jpg');">
+        </button>
+        <button id="lemon_sel" onclick="choose(this, 'lemon')" class="square btn_chose"
+            style="grid-column: 4 / 4;background-image: url('images/image\ \(2\).jpg');">
+        </button>
+        <button id="apple_sel" onclick="choose(this, 'apple')" class="square btn_chose"
+            style="grid-column: 5 / 5;background-image: url('images/image\ \(3\).jpg');">
+        </button>
+    </div>
+    <button onclick="play(this)" class="play_btn">JUGAR</button>
+</body>
+<script type="text/javascript" src="app.js"></script>
+
+</html>
