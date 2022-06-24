@@ -161,7 +161,7 @@ async function run(classname, dir, llim, rlim) {
   let ran_cell = Math.random();
   // console.log(ran_cell);
   // console.log(i);
-  // console.log(probabilities);
+  console.log(probabilities);
   let prob_idx;
   for (prob_idx = 1; prob_idx < 25; prob_idx++) {
     if (ran_cell < probabilities[prob_idx]) {
