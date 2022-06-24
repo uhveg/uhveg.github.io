@@ -400,7 +400,7 @@ async function loadData() {
     PREMIO = datos.premio;
     BONUS = datos.bonus;
     HEART_BONUS = datos.h_bonus;
-    HEART_DONE = JSON.parse(datos.h_done);
+    HEART_DONE = datos.h_done;
 
     console.log(CREDITOS);
     console.log(PREMIO);
