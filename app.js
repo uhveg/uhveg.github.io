@@ -310,6 +310,14 @@ function pass_prize() {
   PREMIO = 0;
   document.getElementById("premio_val").innerHTML = PREMIO;
   document.getElementById("credito_val").innerHTML = CREDITOS;
+  // UPDATE VALUES
+  const respuesta = fetch("https://databasejson-1.herokuapp.com/?user="+USER
+                            +"&credito=" + CREDITOS
+                            +"&premio=" + PREMIO
+                            +"&bonus=" + BONUS
+                            +"&hbonus=" + HEART_BONUS
+                            +"&hdone=" + JSON.stringify(HEART_DONE)
+                            +"&update=true");
 }
 
 function getParams(url) {
@@ -346,5 +354,5 @@ for (let idx of HEART_DONE) {
 }
 
 bet_array[0].win = BONUS;
-// init_probabilities([0.65, 0.15, 0.1, 0.05, 0.03, 0.015, 0.005]); // GOOD
-init_probabilities([0.01, 0.01, 0.01, 0.9, 0.01, 0.01, 0.05]); // GOOD
+init_probabilities([0.65, 0.15, 0.1, 0.05, 0.03, 0.015, 0.005]); // GOOD
+// init_probabilities([0.01, 0.01, 0.01, 0.9, 0.01, 0.01, 0.05]); // GOOD
