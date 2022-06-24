@@ -117,9 +117,9 @@ function init_probabilities(array_prob) {
       }
     }
   }
-  console.log("NOchoose");
-  console.log(nochoose);
-  console.log(p_none);
+  // console.log("NOchoose");
+  // console.log(nochoose);
+  // console.log(p_none);
 
   for (let idx_b = 1; idx_b < 25; idx_b++) {
     probabilities[idx_b] = probabilities[idx_b - 1];
@@ -146,7 +146,7 @@ function init_probabilities(array_prob) {
       probabilities[idx_b] += array_prob[6];
     }
   }
-  console.log(probabilities);
+  // console.log(probabilities);
 }
 
 speed = function (rnd, iters) {
@@ -255,7 +255,7 @@ async function play(btn) {
   child.style.animationName = "blink_low";
 
   // CHECK IF WIN
-  console.log("CASILLA GANADORA:: " + i);
+  // console.log("CASILLA GANADORA:: " + i);
   for (let element of bet_array) {
     if (element.index.includes(i) && element.bet > 0) {
       console.log("FRUTA GANADORA:: " + element.name);
@@ -315,7 +315,7 @@ async function play(btn) {
   );
 
   // Update screen
-  console.log("PREMIO:: " + PREMIO);
+  // console.log("PREMIO:: " + PREMIO);
   document.getElementById("premio_val").innerHTML = PREMIO;
   document.getElementById("full_bonus_id").innerHTML = BONUS;
   document.getElementById("heart_bonus_id").innerHTML = HEART_BONUS;
