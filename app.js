@@ -180,7 +180,7 @@ async function run(classname, dir, llim, rlim) {
   }
   // console.log(probabilities);
   // console.log(prob_idx);
-  let myrand = prob_idx - i - 1 + 24 * Math.floor(Math.random() * 5 + 2);
+  let myrand = prob_idx - i - 1 + 24 * Math.floor(Math.random() * 4 + 3);
   for (let supa = 0; supa < myrand; supa++) {
     dels.push(speed(myrand, supa));
   }
