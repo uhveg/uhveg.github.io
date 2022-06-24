@@ -57,6 +57,7 @@ let BONUS = 0;
 let HEART_BONUS = 0;
 let USER = "";
 let HEART_DONE = [];
+let dels = [];
 
 function init_probabilities(array_prob) {
   // win < 5 -> 65%
@@ -156,6 +157,11 @@ async function run(classname, dir, llim, rlim) {
   }
   // console.log(prob_idx);
   let myrand = prob_idx - i - 1 + 24 * Math.floor(Math.random() * 5 + 2);
+  for (let supa = 0; supa < myrand; supa++) {
+    dels.push(speed(myrand, supa));
+  }
+  sound();
+
   var iters = 0;
   while (true) {
     var aux_index = i - dir;
@@ -268,13 +274,21 @@ async function play(btn) {
     }
   }
   // UPDATE VALUES
-  const respuesta = fetch("https://databasejson-1.herokuapp.com/?user="+USER
-                            +"&credito=" + CREDITOS
-                            +"&premio=" + PREMIO
-                            +"&bonus=" + BONUS
-                            +"&hbonus=" + HEART_BONUS
-                            +"&hdone=" + JSON.stringify(HEART_DONE)
-                            +"&update=true");
+  const respuesta = fetch(
+    "https://databasejson-1.herokuapp.com/?user=" +
+      USER +
+      "&credito=" +
+      CREDITOS +
+      "&premio=" +
+      PREMIO +
+      "&bonus=" +
+      BONUS +
+      "&hbonus=" +
+      HEART_BONUS +
+      "&hdone=" +
+      JSON.stringify(HEART_DONE) +
+      "&update=true"
+  );
 
   // Update screen
   console.log("PREMIO:: " + PREMIO);
@@ -305,19 +319,75 @@ function choose(btn, name) {
   // console.log(name);
 }
 
+async function sound() {
+  // console.log("start sound");
+  var times100 = Math.floor(
+    dels.filter((item) => item < 100).reduce((a, b) => a + b, 0) / 100
+  );
+  var firstStop = dels.findIndex((item) => item < 100);
+  var secondStop = dels.findLastIndex((item) => item < 100);
+  var context = new AudioContext();
+  for (let i = 0; i < firstStop; i++) {
+    var o = context.createOscillator();
+    var g = context.createGain();
+    o.connect(g);
+    o.type = "triangle";
+    o.frequency.value = 700;
+    g.connect(context.destination);
+    g.gain.exponentialRampToValueAtTime(0.001, context.currentTime + 0.4);
+    o.start(context.currentTime);
+    o.stop(context.currentTime + 0.4);
+    let delayres = await delay(dels[i]);
+  }
+  for (let i = 0; i < times100; i++) {
+    var o = context.createOscillator();
+    var g = context.createGain();
+    o.connect(g);
+    o.type = "triangle";
+    o.frequency.value = 700;
+    g.connect(context.destination);
+    g.gain.exponentialRampToValueAtTime(0.001, context.currentTime + 0.4);
+    o.start(context.currentTime);
+    o.stop(context.currentTime + 0.4);
+    let delayres = await delay(100);
+  }
+  for (let i = secondStop; i < dels.length; i++) {
+    var o = context.createOscillator();
+    var g = context.createGain();
+    o.connect(g);
+    o.type = "triangle";
+    o.frequency.value = 700;
+    g.connect(context.destination);
+    g.gain.exponentialRampToValueAtTime(0.001, context.currentTime + 0.4);
+    o.start(context.currentTime);
+    o.stop(context.currentTime + 0.4);
+    let delayres = await delay(dels[i]);
+  }
+  // console.log("Finish sound");
+  dels = [];
+}
+
 function pass_prize() {
   CREDITOS += PREMIO;
   PREMIO = 0;
   document.getElementById("premio_val").innerHTML = PREMIO;
   document.getElementById("credito_val").innerHTML = CREDITOS;
   // UPDATE VALUES
-  const respuesta = fetch("https://databasejson-1.herokuapp.com/?user="+USER
-                            +"&credito=" + CREDITOS
-                            +"&premio=" + PREMIO
-                            +"&bonus=" + BONUS
-                            +"&hbonus=" + HEART_BONUS
-                            +"&hdone=" + JSON.stringify(HEART_DONE)
-                            +"&update=true");
+  const respuesta = fetch(
+    "https://databasejson-1.herokuapp.com/?user=" +
+      USER +
+      "&credito=" +
+      CREDITOS +
+      "&premio=" +
+      PREMIO +
+      "&bonus=" +
+      BONUS +
+      "&hbonus=" +
+      HEART_BONUS +
+      "&hdone=" +
+      JSON.stringify(HEART_DONE) +
+      "&update=true"
+  );
 }
 
 function getParams(url) {
@@ -354,5 +424,5 @@ for (let idx of HEART_DONE) {
 }
 
 bet_array[0].win = BONUS;
-init_probabilities([0.65, 0.15, 0.1, 0.05, 0.03, 0.015, 0.005]); // GOOD
+init_probabilities([0.80, 0.13, 0.05, 0.01, 0.007, 0.002, 0.001]); // GOOD
 // init_probabilities([0.01, 0.01, 0.01, 0.9, 0.01, 0.01, 0.05]); // GOOD
