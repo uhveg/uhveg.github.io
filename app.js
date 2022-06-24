@@ -117,6 +117,7 @@ function init_probabilities(array_prob) {
       }
     }
   }
+  console.log(nochoose);
 
   for (let idx_b = 1; idx_b < 25; idx_b++) {
     probabilities[idx_b] = probabilities[idx_b - 1];
