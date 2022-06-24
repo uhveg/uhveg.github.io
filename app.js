@@ -51,7 +51,7 @@ let bet_array = [
 
 let probabilities = new Array(25).fill(0);
 
-let CREDITOS = 0;
+let CREDITOS = 10;
 let PREMIO = 0;
 let BONUS = 0;
 let HEART_BONUS = 0;
@@ -110,15 +110,16 @@ function init_probabilities(array_prob) {
   }
 
   let nochoose = [];
-  for(let fruit in bet_array) {
-    if(fruit.bet == 0) {
-      for(let id of fruit.index) {
+  for (let elm of bet_array) {
+    if (elm.bet == 0) {
+      for (let id of elm.index) {
         nochoose.push(id);
       }
     }
   }
-  console.log("NOchoose")
+  console.log("NOchoose");
   console.log(nochoose);
+  console.log(p_none);
 
   for (let idx_b = 1; idx_b < 25; idx_b++) {
     probabilities[idx_b] = probabilities[idx_b - 1];
@@ -160,10 +161,10 @@ async function delay(delayInms) {
 
 async function run(classname, dir, llim, rlim) {
   // let myrand = Math.random() * (rlim - llim) + llim;
-  init_probabilities([0.3, 0.005, 0.004, 0.003, 0.0004, 0.0002, 0.0001]);
+  init_probabilities([0.3, 0.004, 0.003, 0.001, 0.0004, 0.0002, 0.0001]);
   let ran_cell = Math.random();
-  console.log("RANDOM :=");
-  console.log(ran_cell);
+  // console.log("RANDOM :=");
+  // console.log(ran_cell);
   // console.log(i);
   let prob_idx;
   for (prob_idx = 1; prob_idx < 25; prob_idx++) {
@@ -171,7 +172,7 @@ async function run(classname, dir, llim, rlim) {
       break;
     }
   }
-  console.log(probabilities);
+  // console.log(probabilities);
   // console.log(prob_idx);
   let myrand = prob_idx - i - 1 + 24 * Math.floor(Math.random() * 5 + 2);
   for (let supa = 0; supa < myrand; supa++) {
@@ -419,12 +420,6 @@ async function loadData() {
     HEART_BONUS = datos.h_bonus;
     HEART_DONE = datos.h_done;
 
-    console.log(CREDITOS);
-    console.log(PREMIO);
-    console.log(BONUS);
-    console.log(HEART_BONUS);
-    console.log(HEART_DONE);
-
     document.getElementById("premio_val").innerHTML = PREMIO;
     document.getElementById("credito_val").innerHTML = CREDITOS;
     document.getElementById("full_bonus_id").innerHTML = BONUS;
@@ -438,7 +433,7 @@ async function loadData() {
     }
 
     bet_array[0].win = BONUS;
-    init_probabilities([0.3, 0.005, 0.004, 0.003, 0.0004, 0.0002, 0.0001]); // GOOD
+    // init_probabilities([0.3, 0.005, 0.004, 0.003, 0.0004, 0.0002, 0.0001]); // GOOD
   } else {
     console.log("ERROR");
     window.location.href = "/";
@@ -463,4 +458,23 @@ USER = params["user"];
 
 loadData();
 
-// init_probabilities([0.01, 0.01, 0.01, 0.9, 0.01, 0.01, 0.05]); // GOOD
+// CREDITOS = 10;
+// PREMIO = 0;
+// BONUS = 100;
+// HEART_BONUS = 100;
+// HEART_DONE = [2,6,10,16];
+
+// document.getElementById("premio_val").innerHTML = PREMIO;
+// document.getElementById("credito_val").innerHTML = CREDITOS;
+// document.getElementById("full_bonus_id").innerHTML = BONUS;
+// document.getElementById("heart_bonus_id").innerHTML = HEART_BONUS;
+
+// for (let idx of HEART_DONE) {
+//   var myel = document.getElementById("_" + idx);
+//   var hel = document.getElementById("h_" + idx);
+//   myel.classList.add("bonus_h");
+//   hel.style.filter = "saturate(100%)";
+// }
+
+// bet_array[0].win = BONUS;
+// init_probabilities([0.3, 0.005, 0.004, 0.003, 0.0004, 0.0002, 0.0001]); // GOOD
