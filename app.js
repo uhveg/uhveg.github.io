@@ -68,10 +68,11 @@ function init_probabilities(array_prob) {
   // win_train_M == 1.5%
   // win_bonus == 0.5%
   var sum = array_prob.reduce((a, b) => a + b, 0);
-  if (sum != 1) {
-    console.log("ERROR init probabilities::: must sum 1");
-    return;
-  }
+  var p_none = 1 - sum;
+  // if (sum != 1) {
+  //   console.log("ERROR init probabilities::: must sum 1");
+  //   return;
+  // }
   min5 = [];
   eq10 = [];
   eq20 = [];
@@ -107,9 +108,21 @@ function init_probabilities(array_prob) {
       }
     }
   }
+
+  let nochoose = [];
+  for(let fruit in bet_array) {
+    if(fruit.bet == 0) {
+      for(let id of fruit.index) {
+        nochoose.push(id);
+      }
+    }
+  }
+
   for (let idx_b = 1; idx_b < 25; idx_b++) {
     probabilities[idx_b] = probabilities[idx_b - 1];
-    if (min5.includes(idx_b)) {
+    if (nochoose.includes(idx_b)) {
+      probabilities[idx_b] += p_none / nochoose.length;
+    } else if (min5.includes(idx_b)) {
       probabilities[idx_b] += array_prob[0] / min5.length;
     } else if (eq10.includes(idx_b)) {
       probabilities[idx_b] += array_prob[1] / eq10.length;
@@ -421,7 +434,7 @@ async function loadData() {
     }
 
     bet_array[0].win = BONUS;
-    init_probabilities([0.90, 0.05, 0.04, 0.0093, 0.0004, 0.0002, 0.0001]); // GOOD
+    init_probabilities([0.3, 0.005, 0.004, 0.003, 0.0004, 0.0002, 0.0001]); // GOOD
   } else {
     console.log("ERROR");
     window.location.href = "/";
