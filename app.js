@@ -390,6 +390,44 @@ function pass_prize() {
   );
 }
 
+async function loadData() {
+  const respuesta = await fetch(
+    "https://databasejson-1.herokuapp.com/?user=" + USER
+  );
+  if (respuesta.status === 200) {
+    let datos = await respuesta.json();
+    CREDITOS = datos.credito;
+    PREMIO = datos.premio;
+    BONUS = datos.bonus;
+    HEART_BONUS = datos.h_bonus;
+    HEART_DONE = JSON.parse(datos.h_done);
+
+    console.log(CREDITOS);
+    console.log(PREMIO);
+    console.log(BONUS);
+    console.log(HEART_BONUS);
+    console.log(HEART_DONE);
+
+    document.getElementById("premio_val").innerHTML = PREMIO;
+    document.getElementById("credito_val").innerHTML = CREDITOS;
+    document.getElementById("full_bonus_id").innerHTML = BONUS;
+    document.getElementById("heart_bonus_id").innerHTML = HEART_BONUS;
+
+    for (let idx of HEART_DONE) {
+      var myel = document.getElementById("_" + idx);
+      var hel = document.getElementById("h_" + idx);
+      myel.classList.add("bonus_h");
+      hel.style.filter = "saturate(100%)";
+    }
+
+    bet_array[0].win = BONUS;
+    init_probabilities([0.8, 0.13, 0.05, 0.01, 0.007, 0.002, 0.001]); // GOOD
+  } else {
+    console.log("ERROR");
+    window.location.href = "/";
+  }
+}
+
 function getParams(url) {
   var idx = url.indexOf("?");
   var params = new Array();
@@ -406,40 +444,6 @@ function getParams(url) {
 params = getParams(document.URL);
 USER = params["user"];
 
-const respuesta = await fetch(
-  "https://databasejson-1.herokuapp.com/?user=" + USER
-);
-if (respuesta.status === 200) {
-  let datos = await respuesta.json();
-  CREDITOS = datos.credito;
-  PREMIO = datos.premio;
-  BONUS = datos.bonus;
-  HEART_BONUS = datos.h_bonus;
-  HEART_DONE = JSON.parse(datos.h_done);
-  
-  console.log(CREDITOS);
-  console.log(PREMIO);
-  console.log(BONUS);
-  console.log(HEART_BONUS);
-  console.log(HEART_DONE);
-
-  document.getElementById("premio_val").innerHTML = PREMIO;
-  document.getElementById("credito_val").innerHTML = CREDITOS;
-  document.getElementById("full_bonus_id").innerHTML = BONUS;
-  document.getElementById("heart_bonus_id").innerHTML = HEART_BONUS;
-
-  for (let idx of HEART_DONE) {
-    var myel = document.getElementById("_" + idx);
-    var hel = document.getElementById("h_" + idx);
-    myel.classList.add("bonus_h");
-    hel.style.filter = "saturate(100%)";
-  }
-
-  bet_array[0].win = BONUS;
-  init_probabilities([0.8, 0.13, 0.05, 0.01, 0.007, 0.002, 0.001]); // GOOD
-} else {
-  console.log("ERROR");
-  window.location.href = "/";
-}
+loadData();
 
 // init_probabilities([0.01, 0.01, 0.01, 0.9, 0.01, 0.01, 0.05]); // GOOD
