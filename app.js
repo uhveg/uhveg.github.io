@@ -125,7 +125,8 @@ function init_probabilities(array_prob) {
     probabilities[idx_b] = probabilities[idx_b - 1];
     if (nochoose.includes(idx_b)) {
       probabilities[idx_b] += p_none / nochoose.length;
-    } else if (min5.includes(idx_b)) {
+    }
+    if (min5.includes(idx_b)) {
       probabilities[idx_b] += array_prob[0] / min5.length;
     } else if (eq10.includes(idx_b)) {
       probabilities[idx_b] += array_prob[1] / eq10.length;
@@ -141,6 +142,7 @@ function init_probabilities(array_prob) {
       probabilities[idx_b] += array_prob[6];
     }
   }
+  console.log(probabilities);
 }
 
 speed = function (rnd, iters) {
