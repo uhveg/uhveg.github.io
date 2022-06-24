@@ -12,7 +12,7 @@ let bet_array = [
     index: [20, 21],
     index_m: [21],
     win: 20,
-    win_m: 4,
+    win_m: 2,
   },
   {
     name: "watermelon",
@@ -20,9 +20,9 @@ let bet_array = [
     index: [15, 17],
     index_m: [15],
     win: 20,
-    win_m: 4,
+    win_m: 2,
   },
-  { name: "pear", bet: 0, index: [8, 9], index_m: [9], win: 20, win_m: 4 },
+  { name: "pear", bet: 0, index: [8, 9], index_m: [9], win: 20, win_m: 2 },
   {
     name: "pineapple",
     bet: 0,
