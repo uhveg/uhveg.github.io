@@ -421,7 +421,7 @@ async function loadData() {
     }
 
     bet_array[0].win = BONUS;
-    init_probabilities([0.92, 0.04, 0.03, 0.0093, 0.0004, 0.0002, 0.0001]); // GOOD
+    init_probabilities([0.90, 0.05, 0.04, 0.0093, 0.0004, 0.0002, 0.0001]); // GOOD
   } else {
     console.log("ERROR");
     window.location.href = "/";
