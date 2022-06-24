@@ -127,7 +127,11 @@ function init_probabilities(array_prob) {
       probabilities[idx_b] += p_none / nochoose.length;
     }
     if (min5.includes(idx_b)) {
-      probabilities[idx_b] += array_prob[0] / min5.length;
+      if(nochoose.length == 0){
+        probabilities[idx_b] += (array_prob[0]+p_none) / min5.length;
+      } else {
+        probabilities[idx_b] += array_prob[0] / min5.length;
+      }
     } else if (eq10.includes(idx_b)) {
       probabilities[idx_b] += array_prob[1] / eq10.length;
     } else if (eq20.includes(idx_b)) {
@@ -163,7 +167,7 @@ async function delay(delayInms) {
 
 async function run(classname, dir, llim, rlim) {
   // let myrand = Math.random() * (rlim - llim) + llim;
-  init_probabilities([0.3, 0.004, 0.003, 0.001, 0.0004, 0.0002, 0.0001]);
+  init_probabilities([0.43, 0.0045, 0.003, 0.001, 0.0004, 0.0002, 0.0001]);
   let ran_cell = Math.random();
   // console.log("RANDOM :=");
   // console.log(ran_cell);
