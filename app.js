@@ -461,8 +461,9 @@ USER = params["user"];
 
 loadData();
 
-init_probabilities([0.6, 0.2, 0.1, 0.05, 0.02, 0.02, 0.01]);
-console.log(probabilities);
+let arrpr = [0.45, 0.3, 0.15, 0.05, 0.02, 0.02, 0.01];
+init_probabilities(arrpr);
+console.log(arrpr);
 
 // CREDITOS = 10;
 // PREMIO = 0;
