@@ -58,6 +58,7 @@ let HEART_BONUS = 0;
 let USER = "";
 let HEART_DONE = [];
 let dels = [];
+let playing = false;
 
 function init_probabilities(array_prob) {
   // win < 5 -> 65%
@@ -232,6 +233,7 @@ async function run(classname, dir, llim, rlim) {
 }
 
 async function play(btn) {
+  playing = true;
   // CHECK IF BET IS MADE
   var sum = bet_array.reduce((a, b) => a + b.bet, 0);
   if (sum == 0) {
@@ -332,7 +334,7 @@ async function play(btn) {
 }
 
 function choose(btn, name) {
-  if (CREDITOS > 0) {
+  if (CREDITOS > 0 && !playing) {
     CREDITOS--;
     btn.style.backgroundPositionY = "10%";
     let obj = bet_array.find((o) => o.name == name);
