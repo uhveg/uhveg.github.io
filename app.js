@@ -331,6 +331,7 @@ async function play(btn) {
   });
 
   btn.style.transform = "translateY(0%)";
+  playing = false;
 }
 
 function choose(btn, name) {
