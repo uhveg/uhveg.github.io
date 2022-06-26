@@ -69,11 +69,11 @@ function init_probabilities(array_prob) {
   // win_train_M == 1.5%
   // win_bonus == 0.5%
   var sum = array_prob.reduce((a, b) => a + b, 0);
-  var p_none = 1 - sum;
-  // if (sum != 1) {
-  //   console.log("ERROR init probabilities::: must sum 1");
-  //   return;
-  // }
+  // var p_none = 1 - sum;
+  if (sum != 1) {
+    console.log("ERROR init probabilities::: must sum 1");
+    return;
+  }
   min5 = [];
   eq10 = [];
   eq20 = [];
@@ -110,29 +110,22 @@ function init_probabilities(array_prob) {
     }
   }
 
-  let nochoose = [];
-  for (let elm of bet_array) {
-    if (elm.bet == 0) {
-      for (let id of elm.index) {
-        nochoose.push(id);
-      }
-    }
-  }
+  // let nochoose = [];
+  // for (let elm of bet_array) {
+  //   if (elm.bet == 0) {
+  //     for (let id of elm.index) {
+  //       nochoose.push(id);
+  //     }
+  //   }
+  // }
   // console.log("NOchoose");
   // console.log(nochoose);
   // console.log(p_none);
 
   for (let idx_b = 1; idx_b < 25; idx_b++) {
     probabilities[idx_b] = probabilities[idx_b - 1];
-    if (nochoose.includes(idx_b)) {
-      probabilities[idx_b] += p_none / nochoose.length;
-    }
     if (min5.includes(idx_b)) {
-      if(nochoose.length == 0){
-        probabilities[idx_b] += (array_prob[0]+p_none) / min5.length;
-      } else {
-        probabilities[idx_b] += array_prob[0] / min5.length;
-      }
+      probabilities[idx_b] += array_prob[0] / min5.length;
     } else if (eq10.includes(idx_b)) {
       probabilities[idx_b] += array_prob[1] / eq10.length;
     } else if (eq20.includes(idx_b)) {
@@ -169,7 +162,7 @@ async function delay(delayInms) {
 async function run(classname, dir, llim, rlim) {
   // let myrand = Math.random() * (rlim - llim) + llim;
   // init_probabilities([0.43, 0.0045, 0.003, 0.001, 0.0004, 0.0002, 0.0001]);
-  init_probabilities([0.6, 0.2, 0.1, 0.05, 0.02, 0.02, 0.01]);
+  // init_probabilities([0.6, 0.2, 0.1, 0.05, 0.02, 0.02, 0.01]);
   let ran_cell = Math.random();
   // console.log("RANDOM :=");
   // console.log(ran_cell);
@@ -467,6 +460,9 @@ params = getParams(document.URL);
 USER = params["user"];
 
 loadData();
+
+init_probabilities([0.6, 0.2, 0.1, 0.05, 0.02, 0.02, 0.01]);
+console.log(probabilities);
 
 // CREDITOS = 10;
 // PREMIO = 0;
