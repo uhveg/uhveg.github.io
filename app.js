@@ -168,7 +168,8 @@ async function delay(delayInms) {
 
 async function run(classname, dir, llim, rlim) {
   // let myrand = Math.random() * (rlim - llim) + llim;
-  init_probabilities([0.43, 0.0045, 0.003, 0.001, 0.0004, 0.0002, 0.0001]);
+  // init_probabilities([0.43, 0.0045, 0.003, 0.001, 0.0004, 0.0002, 0.0001]);
+  init_probabilities([0.6, 0.2, 0.1, 0.05, 0.02, 0.02, 0.01]);
   let ran_cell = Math.random();
   // console.log("RANDOM :=");
   // console.log(ran_cell);
